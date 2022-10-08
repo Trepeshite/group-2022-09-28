@@ -1,44 +1,43 @@
-/*
-проба коментаря 1
 
-*/
+// завдання 3
 
-// проба коментаря 2
+const task_3_Number_1 = prompt("Введіть число 1");
+const task_3_Number_2 = prompt("Введіть число 2");
+let task_3_Number_4 = task_3_Number_1+task_3_Number_2;
+let task_3_Number_5 = task_3_Number_1-task_3_Number_2;
+let task_3_Number_6 = task_3_Number_1*task_3_Number_2;
+let task_3_Number_7 = task_3_Number_1/task_3_Number_2;
+alert ("Користувач ввів " + task_3_Number_1 + " і " + task_3_Number_2 + ":" +
+" додавання " + task_3_Number_4 +
+"; віднімання " + task_3_Number_5 +
+"; множення " + task_3_Number_6 +
+"; ділення " + task_3_Number_7
+);
 
+// завдання 4
 
-// alert("У вас все добре?");                 //проба функції alert
+// ??? питаємо у користувача, що він хоче зробити (add, sub, mult, div)
+const task_4_arithmetic_operation = prompt("Що ви хоче зробити (add чи sub чи mult чи div)?");
+const task_4_Number_1 = prompt("Введіть число 1");
+const task_4_Number_2 = prompt("Введіть число 2");
+if (task_4_arithmetic_operation === "add") {
+alert (task_4_Number_1 + "+" + task_4_Number_2 + " = " + (+task_4_Number_1 + +task_4_Number_2))} else 
+if (task_4_arithmetic_operation === "sub") {
+alert (task_4_Number_1 + "-" + task_4_Number_2 + " = " + (+task_4_Number_1 - +task_4_Number_2))} else;
+if (task_4_arithmetic_operation === "mult") {
+alert (task_4_Number_1 + "*" + task_4_Number_2 + " = " + +task_4_Number_1 * +task_4_Number_2)} else;
+if (task_4_arithmetic_operation === "div") {
+alert (task_4_Number_1 + "/" + task_4_Number_2 + " = " + +task_4_Number_1 / +task_4_Number_2)};
 
+// завдання 5
 
-// let film= prompt("Ваше враження про фільм Гранд Будапешт",'');                 //проба функції prompt
-// console.log('Зрозуміло, ваше враження про фільм - ',film +'. Дякую за ваш відгук.');
+const timeHour = prompt("Введіть кількість годин");
+const timeSec = timeHour*60;
+alert (timeHour + " годин " + "дорівнює " + timeSec + " секунд")
 
+// завдання 6
 
-// let sex= confirm("Ви чоловік?",'');                 //проба функції confirm
-// console.log("Якщо чоловік - true, якщо жінка - false. Ваша відповідь - ",sex);
-
-
-
-
-//                урок 2
-//              завдання 1 
-
-alert("Урок №2. Завдання №1");
-
-let userName = prompt("Введіть ваше ім'я");                 //дані №1 від юзера 
-let userBirthday = prompt("Введіть дату вашого народження");                 //дані №2 від юзера 
-let userProfession = prompt("Введіть назву вашою роботии");                 //дані №3 від юзера 
-console.log("!!!   Завдання №1   !!!");
-console.log("Доброго дня ",userName + ". Бачу, що ваш день народження " + userBirthday + ". Цікаво, а як празднують свій день народження " + userProfession + "?");
-
-
-
-//               завдання 2
-
-alert("Урок №2. Завдання №2");
-console.log("!!!   Завдання №2   !!!");
-const userNumber = prompt("Введіть п'ятизначне число");
-console.log("Ви ввели число - ",userNumber);
-const userNumberSplit = userNumber.split('');
-console.log("Нове число через пропуски - ",userNumberSplit.join(' '));
-
-//               !!!     я забув вписати змінии в нову ветку, тому зроблю це вже на наступне заняття            !!!
+const task_6_Number_1 = prompt("Введіть число 1");
+const task_6_Number_2 = prompt("Введіть число 2");
+const task_6_Number_3 = prompt("Введіть число 3");
+alert ("Середнє арифметичне цих чисел " + ((+task_6_Number_1 + +task_6_Number_2 + +task_6_Number_3) / 3));
