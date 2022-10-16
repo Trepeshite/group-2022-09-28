@@ -299,3 +299,4 @@
 //    }
 // }
 //    console.log (`Всі числа в діапазоні від  ${firstNumber} до ${lastNumber}, які кратні 3 - ${result}`);
+
