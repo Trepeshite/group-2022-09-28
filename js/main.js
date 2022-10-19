@@ -1,302 +1,166 @@
-// !!!!!!! завдання 7
+// !!   ДЗ 13. Реалізуйте функцію removeElement
+// ??  Реалізуйте функцію removeElement(array, item), щоб видалити елемент item з масиву array.
 
-// Запитати у користувача рік народження.
-// Запитати в нього, в якому місті він живе.
-// Запитати його улюблений вид спорту.
-// При натисканні на ОК показуємо вікно, де має бути відображена наступна інформація:
-// Його вік.
-// Якщо користувач вкаже Київ, Вашингтон чи Лондон, то показати йому повідомлення - "Ти живеш у столиці..." 
-// і на місце точок підставляємо країну, столицею якої є місто. Інакше показуємо йому “ти живеш у місті…” і місце точок – введене місто.
-// Вибираємо самі три види спорту та три чемпіони у цих видах. Відповідно, якщо користувач вкаже один із цих видів спорту, 
-// то показуємо йому повідомлення “Круто! Хочеш стати …? і підставляємо на місце точок ім'я та прізвище чемпіона.
-// Все це має бути відображено в одному вікні (алерті).
-// Якщо в якомусь випадку він не захоче вводити інформацію і натисне Скасувати, показати йому повідомлення – 
-// “Шкода, що Ви не захотіли ввести свій(ю) …” і вказуємо, що він не захотів вводити – дату народження, місто чи вид спорту .
 
-// !!!!!! рішення
 
-// const userBirthdayYear = +prompt('Який ваш рік народження?', '');
-// if (!userBirthdayYear) {
-//    alert('Шкода, що Ви не захотіли ввести свою дату народження.');
-// }
-// const userCity = prompt('В якому місті ви проживаєте?', '');
-// if (!userCity) {
-//    alert('Шкода, що Ви не захотіли ввести своє місто.')
-// }
-// const userSport = prompt('Ваш улюбленний вид спорту?', '');
-// if (!userSport) {
-//    alert('Шкода, що Ви не захотіли ввести свій улюблений вид спорту.')
-// }
+// !! Рішення
 
-// let result;
-// const currentYear = new Date().getFullYear();
-// if(userBirthdayYear) {
-//    result = `Тобі ${currentYear - userBirthdayYear } років. `;
-// } else {
-//    result = `Ви не вказали свій вік. `;
-// }
-
-// const city = typeof userCity === 'string' ? userCity.toLowerCase() : userCity;  
-// switch(city) {
-//    case 'київ':
-//       result = result.concat('Ви живете у столиці України. ');
-//       break;
-//    case 'вашингтон':
-//       result = result.concat('Ви живете столиці США. ');
-//       break;
-//    case 'лондон':
-//       result = result.concat('Ви живете у столиці Англії. ');
-//       break;
-//    case null:
-//       result = result.concat('Ви не вказали своє місто. ');
-//       break;
-//    default:
-//       result = result.concat(`Ви живете у місті ${userCity}. `);
-//       break;
-//       }
-
-// const sport = typeof userSport === 'string' ? userSport.toLowerCase() : userSport;  
-// switch(sport) {
-//    case 'сноуборд':
-//       result = result.concat(`Любиш ${userSport}. Круто! Хочеш стати як Шон Уайт?`);
-//       break;
-//    case 'баскетбол':
-//       result = result.concat(`Любиш ${userSport}. Круто! Хочеш стати як Майкл Джордан?`);
-//       break;
-//    case 'фрізбі':
-//       result = result.concat(`Любиш ${userSport}. Круто! Хочеш стати як Стів Роджерс?`);
-//       break;
-//    case null:
-//       result = result.concat('Ви не вказали свій улюблений вид спорту. ');
-//       break;
-//    default:
-//       result = result.concat(`Ваш улюблений вид спорту - ${userSpor}. `);
-//       break;
-//       }
-
-// alert(result)
-
-// !!!!!!!! завдання 8
-
-// Переписати код нижче з використанням конструкції switch…case
-
-// let numOrStr = prompt('input number or string');
-// console.log(numOrStr)
-
-// if(numOrStr === null) {
-// console.log('ви скасували')
-// } else if( numOrStr.trim() === '' ) {
-// console.log('Empty String');
-// } else if ( isNaN( +numOrStr ) ) {
-// console.log(' number is Ba_NaN')
-// } else {
-// console.log('OK!')
-// }
-
-// !!!!!! рішення
-
-// let numOrStr = prompt('input number or string');
-// console.log(numOrStr)
-
-// const string = typeof numOrStr === 'string' ? numOrStr.trim() : numOrStr;  
-
-// switch(string) {
-//    case null:
-//       console.log('ви скасували');
-//       break;
-//    case '':
-//       console.log('Empty String');
-//       break;
-//    default:
-//       const result = isNaN(+string) ? 'number is Ba_NaN!' : 'OK';
-//       console.log(result);
-//       break;
-// }
-
-// !!!!!!! завдання 9
-
-// ?????? - Вивести на сторінку в один рядок через кому числа від 10 до 20
-
-// !!!!!! рішення
-
-// let result = '';
-// let number = 10;
-// const lastNumber = 20;
-
-// while (number <= lastNumber) {
-//    if (number === lastNumber) {
-//       result = result.concat(`${number}.`);
-//       number++;
-//    } else {
-//       result = result.concat(`${number}, `);
-//       number++;
+// function removeElement(array, item) {
+//    while(array.includes(item)) {
+//       const i = array.indexOf(item);
+//       array.splice(i,1);
 //    }
 // }
-// console.log ( result );
 
-//  ?????? - Вивести квадрати чисел від 10 до 20
-// !!!!!! рішення
+// let array = prompt('Введіть данні для масиву через ","','');
 
-// let number = 10;
-// const lastNumber = 20;
-// let result = '';
 
-// do {
-//       if (number === lastNumber) {
-//          result = result.concat(`${number*number}.`);
-//          number++;
-//       } else {
-//          result = result.concat(`${number*number}, `);
-//          number++;
-//       }
-//    } while (number <= lastNumber);
+// if (array === null) {
+//    alert(`Ви нажали - відміну`);
+// } else {
+//    const el = prompt('Введіть елемент, який потрібно видалити','');
+//    const userArray = array.split(',');
    
-// console.log ( result );
+//    removeElement(userArray,el);
 
-// ?????? Вивести таблицю множення на 7
-// !!!!!! рішення
+//    console.log(`Результат видалення елементу з массиву = ${userArray}`);
+// }
 
-// let result = '';
-// const number = 7;
+// !!!  ДЗ 14. Реалізуйте функцію generateKey
+// ???  Реалізуйте функцію generateKey(length, characters), яка повертає рядок випадкових символів із набору characters довжиною length.
 
-// for (let i = 1; i <= 10; i++) { 
-//    result = result.concat(`${number}x${i}=${number*i}\n`);
-//  }
-//  console.log ( result );
+/* const characters = 'abcdefghijklmnopqrstuvwxyz0123456789';
+const key = generateKey(16, characters);
+console.log(key); // eg599gb60q926j8i  */
 
-// ??????  Надрукувати повну таблицю множення від 1 до 10
-// !!!!!! рішення
+// !!  рішення
 
-// let result = '';
-
-// for (let number = 1; number <= 10; number++) { 
-//    for (let i = 1; i <= 10; i++) { 
-//       if (i === 10) {
-//          result = result.concat(`${number}x${i}=${number*i}\n\n`); 
-//           break;
-//       }
-//       result = result.concat(`${number}x${i}=${number*i}\n`);
-//    }
+// function getRandomIntInclusive(min, max) {
+//    min = Math.ceil(min);
+//    max = Math.floor(max);
+//    return Math.floor(Math.random() * (max - min + 1)) + min;
 //  }
 
-//  console.log ( result );
-
-// ??????  Дано натуральне число. Знайти та вивести на сторінку всі його дільники.
-// !!!!!! рішення
-
-// const number = +prompt ('Ведіть натуральне число', '');
-// if ( !isNaN( number ) && number !== 0 ) {
-//    let result = '';
-
-//    for (let i = 1; i <= number; i++) {
-//       if (number % i === 0) {
-//           result = result.concat(`${i} `); 
-//       }
+// function generateKey (length, characters) {
+//    let key = '';
+//    for (let i = 1; i <= length; i++) {
+//       const randomSymbol = characters[getRandomIntInclusive(0,characters.length-1)]
+//       key = key.concat(randomSymbol)
 //    }
 
-//    console.log ( result );
+//    return key;
+// }
+
+// const characters = 'abcdefghijklmnopqrstuvwxyz0123456789';
+
+// const length = Number(prompt('Введіть довжину ключа'));
+// if (length === 0 || isNaN(length)) {
+//    console.log('Ви не ввели довжину ключа')
 // } else {
-//    alert ('Ви ввели не натуральне число');
-// } 
+//    console.log(`Рядок випадкових символів із набору : ${generateKey(length,characters)}`);
+// }
 
-// ?????? -Визначити кількість його парних дільників
-// !!!!!! рішення
+//  !!  ДЗ 15. Написати кілька функцій
+//  ??  Ця дз складається з чотирьох невеликих завдань, за реалізацію кожної з них можна отримати 25 балів:
 
-// const number = +prompt ('Ведіть натуральне число', '');
+// !! Рішення 
+// ?? Дан масив з елементами різних типів. Створити функцію яка вираховує середнє арифметичне лише числових елементів даного масиву.
 
-// if ( !isNaN( number ) && number !== 0 ) {
-//    let result = 0;
+// const array = [true, 1,'number', false,3,4,2,];
 
-//    for (let i = 1; i <= number; i++) {
-//       if (number % i === 0 && i % 2 === 0 ) {
-//           result++; 
+// function averageСost(array) {
+//    let numberArray = [];
+//    array.forEach(element => {
+//       if (typeof element === 'number') {
+//          numberArray.push(element);
 //       }
+//    });
+//    return numberArray.reduce((sum, number) => sum + number, 0) / numberArray.length; 
+// }
+
+// console.log(`Cереднє арифметичне числових елементів даного масиву array ${averageСost(array)}`);
+
+//  ?? Написати функцію doMath(x, znak, y), яка отримує 3 аргументи: числа x і y, рядок znak. 
+// ??  У змінній znak може бути: +, -, *, /, %, ^ (ступінь ).Вивести результат математичної дії, вказаної в змінній znak.Обидва числа і знак виходять від користувача.
+
+// !!! Рішення
+
+// function doMath (x, znak, y) {
+//    if (typeof x !== "number" || typeof y !== "number") {
+//       return console.log ('Параметри являються не числом')
 //    }
-//    console.log (`В числі ${number} є ${result} парних дільника(ів).`  );
-// } else {
-//    alert ('Ви ввели не натуральне число');
-// } 
+//    switch (znak) {
+//       case '+':
+//          return x + y;
+//          break;
+//       case '-':
+//          return x - y;
+//          break;
+//       case '*':
+//          return x * y;
+//          break;
+//       case '/':
+//          return x / y;
+//          break;
+//       case '%':
+//          return x % y;
+//          break;
+//       case '^':
+//          return Math.pow(x,y);
+//          break;
+//       default:
+//        console.log('Ви ввели операцію, яка не підтримується');
+//    }
+// }
 
-// ??????      Знайти суму його парних дільників
-// !!!!!! рішення
+// console.log (`5+4=${doMath (5,'+',4)}`);
+// console.log (`5-4=${doMath (5,'-',4)}`);
+// console.log (`5*4=${doMath (5,'*',4)}`);
+// console.log (`5/4=${doMath (5,'/',4)}`);
+// console.log (`5%4=${doMath (5,'%',4)}`);
+// console.log (`5^4=${doMath (5,'^',4)}`);
 
-// const number = +prompt ('Ведіть натуральне число', '');
+// ?? Написати функцію заповнення даними користувача двомірного масиву. 
+// ?? Довжину основного масиву і внутрішніх масивів задає користувач. Значення всіх елементів всіх масивів задає користувач.
 
-// if ( !isNaN( number ) && number !== 0 ) {
-//    let result = 0;
+// !!! Рішення
+// function createNestedUserArray () {
+//    const arrayLenght = Number(prompt('Введіть довжину масиву'));
 
-//    for (let i = 1; i <= number; i++) {
-//       if (number % i === 0 && i % 2 === 0 ) {
-//           result = result + i; 
+//    if (arrayLenght === 0 || isNaN(arrayLenght)) {
+//       console.log('Ви не ввели довжину масиву')
+//    } else {
+//       const mainArray = [];
+
+//       for(let i = 0; i < arrayLenght; i++) {
+//          const userData = prompt(`Введіть дані через "," для ${i+1} вложенного масиву`); 
+//          const userArray = userData.split(',');
+//          mainArray.push(userArray);
 //       }
-//    }
-//    console.log (`Сума парних дільників числа ${number} = ${result}`  );
-// } else {
-//    alert ('Ви ввели не натуральне число');
-// } 
-
-// ??????   -Знайти суму всіх цілих чисел від 1 до 15
-// !!!!!! рішення
-
-// const firstNumber = 1;
-// const lastNumber = 15;
-// let sum = 0;
-
-// for (let i = firstNumber; i <= lastNumber; i++) {
-//    sum = sum + i;
-// }
-//    console.log (`Сума всіх цілих чисел від ${firstNumber} до ${lastNumber} дорівнює ${sum}`);
-
-// ?????? -Знайти добуток усіх цілих чисел від 15 до 35
-// !!!!!! рішення
-
-// const firstNumber = 15;
-// const lastNumber = 35;
-// let result = 1;
-
-// for (let i = firstNumber; i <= lastNumber; i++) {
-//    result = result * i;
-// }
-//    console.log (`Добуток всіх цілих чисел від ${firstNumber} до ${lastNumber} дорівнює ${result}`);
-
-//     ?????? -Знайти середнє арифметичне всіх цілих чисел від 1 до 500
-// !!!!!! рішення
-
-// const firstNumber = 1;
-// const lastNumber = 500;
-// let sum = 0;
-
-// for (let i = firstNumber; i <= lastNumber; i++) {
-//    sum = sum + i;
-// }
-// const result = sum / lastNumber;
-//    console.log (`Cереднє арифметичне всіх цілих чисел від ${firstNumber} до ${lastNumber} дорівнює ${result}`);
-
-// ??????  -Вивести суму лише парних чисел в діапазоні від 30 до 80
-// !!!!!! рішення
-
-// const firstNumber = 30;
-// const lastNumber = 80;
-// let sum = 0;
-
-// for (let i = firstNumber; i <= lastNumber; i++) {
-//    if (i % 2 === 0) {
-//       sum = sum + i;
+//        return console.log(mainArray);
 //    }
 // }
-// console.log (`Cума парних чисел в діапазоні від ${firstNumber} до ${lastNumber} дорівнює ${sum}`);
 
-// ?????? - Вивести всі числа в діапазоні від 100 до 200 кратні 3
-// !!!!!! рішення
+// createNestedUserArray();
 
-// const firstNumber = 1;
-// const lastNumber = 6;
-// let result = '';
+// ??  Створити функцію, яка прибирає з рядка всі символи, які ми передали другим аргументом. 'func(" hello world", ['l', 'd'])' поверне нам "heo wor". 
+// ??  Вихідний рядок та символи для видалення задає користувач
 
-// for (let i = firstNumber; i <= lastNumber; i++) {
-//    if (i % 3 === 0) {
-//       result = result.concat(`${i} `);
-//    }
+// !!! Рішення
+
+// function removeSymbols (string='',symbolsArray=[]) {
+//    let result = [];
+//    const arr = string.split('');
+//    arr.forEach((element) => {
+//       if (!symbolsArray.includes(element)) {
+//          result.push(element)
+//       }
+//    });
+//    return console.log(`Результат видалення символів ${userSymbolsArray} з рядка ${userString} - ${result.join('')}`);
 // }
-//    console.log (`Всі числа в діапазоні від  ${firstNumber} до ${lastNumber}, які кратні 3 - ${result}`);
 
+// const userString = prompt('Введіть рядок');
+// const userData = prompt('Введіть символи для видалення через ","');
+// const userSymbolsArray = userData.split(',');
+
+// removeSymbols(userString, userSymbolsArray);
