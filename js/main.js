@@ -6,11 +6,16 @@
 
 // !!! Рішення
 
+/*
+я використав формулу : pow(num, degree) = num * pow(num, degree - 1)
+також прийшлось врахувати умову коли ступінь = 0 та відємна ступінь (та нажаль, в мене виходить помилка)
+*/
+
 function pow(num, degree) {
    if (degree === 0) {
-      return 0;
+      return 1;
    } if (degree < 0){
-      return (1 / num)
+      return num**degree;
    } if (degree !== 1) { 
      return (num * pow(num, degree - 1));
    }  else {
@@ -18,6 +23,4 @@ function pow(num, degree) {
    }
  }
 
- console.log( pow(7, 2) );
-
-
+ console.log( pow(4, -5) );  // 7 в -2 = 0.020408...
