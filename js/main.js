@@ -1,26 +1,38 @@
-// !!!  ДЗ 16. Рекурсивне зведення в ступінь
+// !!!  ДЗ 17. Функція із замиканням
 
-// ??? Реалізувати рекурсивну функцію, яка зводить число в ступінь.
-// ??? Ступінь передається як другий аргумент у функцію
-// ??? pow (num, degree)
+// ??? Написати функцію, яка приймає 1 параметр. з тим, що передали перший раз і т. д. Все це із замиканнями, наприклад: sum(3) = 3 sum(5) = 8 sum(20) = 28
 
-// !!! Рішення
+// !!!  Рішення
 
-/*
-я використав формулу : pow(num, degree) = num * pow(num, degree - 1)
-також прийшлось врахувати умову коли ступінь = 0 та відємна ступінь (та нажаль, в мене виходить помилка)
-*/
+// !!!  варіант 1
 
-function pow(num, degree) {
-   if (degree === 0) {
-      return 1;
-   } if (degree < 0){
-      return num**degree;
-   } if (degree !== 1) { 
-     return (num * pow(num, degree - 1));
-   }  else {
-     return num;
-   }
- }
+// const sum = (function () {
+//     let result = 0; 
+//     return function(number) {
+//        result += number; 
+//        return result; 
+//     } })();
 
- console.log( pow(4, -5) );  // 7 в -2 = 0.020408...
+// console.log(sum(3));
+// console.log(sum(5));
+// console.log(sum(20));
+
+// чи так, якщо привести функцію до const і далі вже її виводити
+// як краще???
+
+// !!!  варіант 2
+
+// const sumFunc = function () {
+//     let result = 0; 
+//     return function(number) {
+//        result += number; 
+//        return result; 
+//     } };
+
+// const sum = sumFunc();
+
+// console.log(sum(3));
+// console.log(sum(5));
+// console.log(sum(20)); 
+
+
