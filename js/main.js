@@ -35,4 +35,18 @@
 // console.log(sum(5));
 // console.log(sum(20)); 
 
+// !!!  варіант 3
+
+// const sumFunc = () => {
+//    let result = 0;
+//    return (numbber) => {
+//        result += numbber;
+//        return result;
+//    };
+// };
+// const sum = sumFunc();
+// console.log(sum(3));
+// console.log(sum(5));
+// console.log(sum(20));
+
 
