@@ -1,52 +1,60 @@
-// !!!  ДЗ 17. Функція із замиканням
+// !!  ДЗ 20. Створюємо сутності
 
-// ??? Написати функцію, яка приймає 1 параметр. з тим, що передали перший раз і т. д. Все це із замиканнями, наприклад: sum(3) = 3 sum(5) = 8 sum(20) = 28
+// ??  Створити сутність людини:
+// ??  ім'я
+// ??  вік
+// ??  Метод виведення даних
 
-// !!!  Рішення
+// ??  Створити сутність автомобіля:
+// ??  Характеристики автомобіля окремими властивостями
+// ??  Методи:
+// ??  Виведення на екран даних про цей автомобіль
+// ??  Привласнення цього автомобіля власнику (записати в автомобіль об'єкт власника)
 
-// !!!  варіант 1
+// ??  Всі дані про людину та про автомобіль отримувати від користувача. 
+// ??  Реалізувати необхідні перевірки на коректність введення (порожні поля, вік > 18 для людини та ін. за необхідності)
+// ??  Максимально використовувати функції
 
-// const sum = (function () {
-//     let result = 0; 
-//     return function(number) {
-//        result += number; 
-//        return result; 
-//     } })();
+// !! Рішення
 
-// console.log(sum(3));
-// console.log(sum(5));
-// console.log(sum(20));
+class Person {
+   constructor(name, age) {
+     this.name = name;
+     this.age = age;
+   
+ }
+ get info() {
+   return console.log(`name = ${this.name}, age = ${this.age}`);
+ }
+}
 
-// чи так, якщо привести функцію до const і далі вже її виводити
-// як краще???
+const person = new Person('Dima', 34);
 
-// !!!  варіант 2
+person.info;
 
-// const sumFunc = function () {
-//     let result = 0; 
-//     return function(number) {
-//        result += number; 
-//        return result; 
-//     } };
+class Car {
+   constructor(brand, model, owner = {}) {
+     this.brand = brand;
+     this.model = model;
+     this.owner = owner;
+   
+ }
 
-// const sum = sumFunc();
+ get info() {
+   return console.log(`brand = ${this.brand}, model = ${this.model}, owner =`,this.owner);
+ }
 
-// console.log(sum(3));
-// console.log(sum(5));
-// console.log(sum(20)); 
+ set newOwner(owner){
+   this.owner = owner;
+ }
+}
 
-// !!!  варіант 3
+const car = new Car('VW', 'Polo', person);
 
-// const sumFunc = () => {
-//    let result = 0;
-//    return (numbber) => {
-//        result += numbber;
-//        return result;
-//    };
-// };
-// const sum = sumFunc();
-// console.log(sum(3));
-// console.log(sum(5));
-// console.log(sum(20));
+car.info;
+car.newOwner = {
+   name: 'Peter',
+   age:26
+};
 
-
+car.info;
