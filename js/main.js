@@ -23,14 +23,14 @@ class Person {
      this.age = age;
    
  }
- get info() {
-   return console.log(`name = ${this.name}, age = ${this.age}`);
+   getInfo() {
+      return console.log(`name = ${this.name}, age = ${this.age}`);
  }
 }
 
 const person = new Person('Dima', 34);
 
-person.info;
+person.getInfo();
 
 class Car {
    constructor(brand, model, owner = {}) {
@@ -40,21 +40,18 @@ class Car {
    
  }
 
- get info() {
-   return console.log(`brand = ${this.brand}, model = ${this.model}, owner =`,this.owner);
+   setNewOwner(owner){
+   this.owner = owner;
  }
 
- set newOwner(owner){
-   this.owner = owner;
+   getInfo() {
+   return console.log(`brand = ${this.brand}, model = ${this.model}, owner =`,this.owner);
  }
 }
 
 const car = new Car('VW', 'Polo', person);
 
-car.info;
-car.newOwner = {
-   name: 'Peter',
-   age:26
-};
+car.getInfo();
+car.setNewOwner(new Person('John', 40));
 
-car.info;
+car.getInfo();
