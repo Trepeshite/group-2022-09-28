@@ -1,52 +1,50 @@
-// !!!  ДЗ 17. Функція із замиканням
+// !!  ДЗ 18. this chain
+/* 
+Це ladder (сходи) – об'єкт, який дозволяє підніматися вгору та спускатися:
 
-// ??? Написати функцію, яка приймає 1 параметр. з тим, що передали перший раз і т. д. Все це із замиканнями, наприклад: sum(3) = 3 sum(5) = 8 sum(20) = 28
+let ladder = {
+    step: 0,
+    up: function () {
+        this.step++;
+    },
+    down: function () {
+        this.step--;
+    },
+    showStep: function () { // показывает текущую ступеньку
+        alert(this.step);
+    }
+};
+Тепер, якщо нам потрібно зробити кілька послідовних викликів, ми можемо виконати це так:
 
-// !!!  Рішення
+ladder.up();
+ladder.up();
+ladder.down();
+ladder.showStep(); // 1
 
-// !!!  варіант 1
+Змініть код методів up, down і showStep таким Таким чином, щоб їх виклик можна було зробити по ланцюжку, наприклад:
 
-// const sum = (function () {
-//     let result = 0; 
-//     return function(number) {
-//        result += number; 
-//        return result; 
-//     } })();
+ladder.up().up().down().showStep(); // 1
+Такий підхід широко використовується в бібліотеках JavaScript.
+*/
 
-// console.log(sum(3));
-// console.log(sum(5));
-// console.log(sum(20));
+// !! Рішення
 
-// чи так, якщо привести функцію до const і далі вже її виводити
-// як краще???
+let ladder = {
+   step: 0,
+   up: function () {
+       this.step++;
+       return this;
+   },
+   down: function () {
+       this.step--;
+       return this;
+   },
+   showStep: function () {
+       alert(this.step);
+       return this;
+   }
 
-// !!!  варіант 2
+};
 
-// const sumFunc = function () {
-//     let result = 0; 
-//     return function(number) {
-//        result += number; 
-//        return result; 
-//     } };
-
-// const sum = sumFunc();
-
-// console.log(sum(3));
-// console.log(sum(5));
-// console.log(sum(20)); 
-
-// !!!  варіант 3
-
-// const sumFunc = () => {
-//    let result = 0;
-//    return (numbber) => {
-//        result += numbber;
-//        return result;
-//    };
-// };
-// const sum = sumFunc();
-// console.log(sum(3));
-// console.log(sum(5));
-// console.log(sum(20));
-
+ladder.up().up().down().showStep();
 
