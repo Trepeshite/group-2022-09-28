@@ -1,52 +1,55 @@
-// !!!  ДЗ 17. Функція із замиканням
+// !! ДЗ 19. Багатоквартирний будинок
 
-// ??? Написати функцію, яка приймає 1 параметр. з тим, що передали перший раз і т. д. Все це із замиканнями, наприклад: sum(3) = 3 sum(5) = 8 sum(20) = 28
+// ??  Створити та описати сутності Багатоквартирного будинку, квартири, мешканця.
+// ??  Додати можливість створювати нові будинки на певну кількість квартир.
+// ??  Не обмежувати кількість мешканців у квартирі 
 
-// !!!  Рішення
+// !!  Рішення 
 
-// !!!  варіант 1
+class АpartmentBuilding {
+   constructor(apartmentAddress, apartments = []) {
+      this.apartmentAddress=apartmentAddress;
+      this.apartmets = apartments;
+      this.apartmentQuantity=apartments.length;
+   }
+ }
 
-// const sum = (function () {
-//     let result = 0; 
-//     return function(number) {
-//        result += number; 
-//        return result; 
-//     } })();
+ class Apartment {
+   constructor(apartmentNumber, apartmetRoomNumbers ,residents = []) {
+      this.apartmentNumber = apartmentNumber;
+      this.apartmetRoomNumbers = apartmetRoomNumbers;
+      this.residents = residents;
+      this.residentsNumber = residents.length;
+   }
+ }
 
-// console.log(sum(3));
-// console.log(sum(5));
-// console.log(sum(20));
+ class ApartmentResident {
+   constructor(name, age, gender) {
+      this.name = name;
+      this.age = age;
+      this.gender = gender;
+   }
+ }
 
-// чи так, якщо привести функцію до const і далі вже її виводити
-// як краще???
+ const resident1 = new ApartmentResident ('Dima', 34, 'male');
+ const resident2 = new ApartmentResident ('Anna', 23, 'female');
+ const resident3 = new ApartmentResident ('Vika', 43, 'female');
+ const resident4 = new ApartmentResident ('Max', 21, 'male');
+ const resident5 = new ApartmentResident ('Jane', 23, 'female');
+ const resident6 = new ApartmentResident ('Lo', 44, 'female');
+ const resident7 = new ApartmentResident ('Lilo', 27, 'female');
 
-// !!!  варіант 2
+ const apartment1 = new Apartment (1,2,[resident1,resident3]);
+ const apartment2 = new Apartment (2,1,[resident2]);
+ const apartment3 = new Apartment (3,1,[resident4]);
+ const apartment4 = new Apartment (1,3,[resident5]);
+ const apartment5 = new Apartment (2,2,[resident6]);
+ const apartment6 = new Apartment (3,1,[resident7]);
 
-// const sumFunc = function () {
-//     let result = 0; 
-//     return function(number) {
-//        result += number; 
-//        return result; 
-//     } };
 
-// const sum = sumFunc();
+ const apartmentBuilding1 = new АpartmentBuilding ('Brooklyn',[apartment1, apartment2, apartment3, new Apartment (4,3,[new ApartmentResident ('john', 44, 'male')])]);
+ const apartmentBuilding2 = new АpartmentBuilding ('New Jersey',[apartment4, apartment5, apartment6]);
 
-// console.log(sum(3));
-// console.log(sum(5));
-// console.log(sum(20)); 
-
-// !!!  варіант 3
-
-// const sumFunc = () => {
-//    let result = 0;
-//    return (numbber) => {
-//        result += numbber;
-//        return result;
-//    };
-// };
-// const sum = sumFunc();
-// console.log(sum(3));
-// console.log(sum(5));
-// console.log(sum(20));
-
+console.log (apartmentBuilding1);
+console.log (apartmentBuilding2);
 
