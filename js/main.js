@@ -1,57 +1,94 @@
 // !!  ДЗ 20. Створюємо сутності
 
-// ??  Створити сутність людини:
-// ??  ім'я
-// ??  вік
-// ??  Метод виведення даних
-
-// ??  Створити сутність автомобіля:
-// ??  Характеристики автомобіля окремими властивостями
-// ??  Методи:
-// ??  Виведення на екран даних про цей автомобіль
-// ??  Привласнення цього автомобіля власнику (записати в автомобіль об'єкт власника)
-
-// ??  Всі дані про людину та про автомобіль отримувати від користувача. 
-// ??  Реалізувати необхідні перевірки на коректність введення (порожні поля, вік > 18 для людини та ін. за необхідності)
-// ??  Максимально використовувати функції
+// Створити сутність людини:
+// імʼя
+// вік
+// Метод виведення даних
+// Створити сутність автомобіля:
+// Характеристики автомобіля окремими властивостями
+// Методи:
+// Виведення на екран даних про цей автомобіль
+// Привласнення цього автомобіля власнику (записати в автомобіль обʼєкт власника)
 
 // !! Рішення
 
+// Що потрібно зробити
+
+// 1. Створити клас Людина
+//     властивості 
+//         імʼя
+//         вік
+//     методи
+//         конструктор, який приймає два параметри: імʼя та вік
+//         метод, який виводить у консоль інформацію про людину
+
 class Person {
-   constructor(name, age) {
-     this.name = name;
-     this.age = age;
-   
- }
-   getInfo() {
-      return console.log(`name = ${this.name}, age = ${this.age}`);
- }
-}
+  name;
+  age;
 
-const person = new Person('Dima', 34);
+  constructor (name, age) {
+    this.name = name;
+    this.age = age;
+  }
+  getInfo() {
+    console.log(`\nВласник:\n\nІм'я = ${this.name}\nВік = ${this.age}`);
+}}
 
-person.getInfo();
+// 2. клас Автомобіль
+//     властивості 
+//         марка, модель, рік виписку, номерний знак (або на Ваш розсуд)
+//         власник
+//     методи 
+//         конструктор, який приймає чотитри параметри (тобто, всі окрім власника): марка, модель, рік виписку, номерний знак 
+//         присвоїти власника - метод повинен приймати екземпляр класу Людина, та зберігати екземпляр класу Людина у відповідному полі, якщо вік більше 18, інакше виводити у консоль відповідне повідомлення
+//         метод, який виводить у консоль інформацію про автомобіль та викликає метод виводу інформації класу Людина для виведення інформації про власника
 
 class Car {
-   constructor(brand, model, owner = {}) {
-     this.brand = brand;
-     this.model = model;
-     this.owner = owner;
-   
- }
+  brand;
+  model;
+  carYear;
+  carNumber;
+  owner;
 
-   setNewOwner(owner){
-   this.owner = owner;
- }
+  constructor (brand, model, carYear, carNumber) {
+    this.brand = brand;
+    this.model = model;
+    this.carYear = carYear;
+    this.carNumber = carNumber;
+  }
 
-   getInfo() {
-   return console.log(`brand = ${this.brand}, model = ${this.model}, owner =`,this.owner);
- }
+  setOwner (owner){
+    if (owner.age < 18) {
+      return console.log ('Вік меньше 18 років')
+    }
+    this.owner = owner;
+  }
+
+  getCarInfo (){
+    console.log(`\nCar info:\n\nБренд: ${this.brand}\nМодель: ${this.model}\nРік: ${this.carYear}\nНомер автомобіля: ${this.carNumber}`);
+    if(this.owner) {
+      this.owner.getInfo();
+    }
+  }
+
 }
 
-const car = new Car('VW', 'Polo', person);
+// в якості демонстраціїї створити:
+//     декілька екземплярів класу Людина
+//     декілька екземплярів класу Автомобіль
+//     присвоїти власників автомобілям
 
-car.getInfo();
-car.setNewOwner(new Person('John', 40));
+const person1 = new Person ('Adam', 23);
+const person2 = new Person ('Viki', 43);
+const person3 = new Person ('Tony', 33);
 
-car.getInfo();
+const car1 = new Car ('VW', 'Passat', 2015, 'AC2343BC');
+const car2 = new Car ('Toyota', 'Camry', 2019, 'AC7272MT');
+const car3 = new Car ('TAVRIA', 'PICUP', 2010, 'AC4534VC');
+
+car1.setOwner(person1);
+car2.setOwner(person2);
+
+car1.getCarInfo();
+car2.getCarInfo();
+car3.getCarInfo();
