@@ -1,50 +1,30 @@
-// !!  ДЗ 18. this chain
-/* 
-Це ladder (сходи) – об'єкт, який дозволяє підніматися вгору та спускатися:
+// !! ДЗ 21. div - привид
+// ???  Є текстове поле на сторінці. Під час фокусування на цьому полі збоку з'являється <div>. При пропажі фокусу - <div> так само пропадає
 
-let ladder = {
-    step: 0,
-    up: function () {
-        this.step++;
-    },
-    down: function () {
-        this.step--;
-    },
-    showStep: function () { // показывает текущую ступеньку
-        alert(this.step);
-    }
-};
-Тепер, якщо нам потрібно зробити кілька послідовних викликів, ми можемо виконати це так:
+// !!  варіант 1 (додованням класу)
 
-ladder.up();
-ladder.up();
-ladder.down();
-ladder.showStep(); // 1
+// const input = document.querySelector(".input");
+// const ghost = document.querySelector(".ghost");
 
-Змініть код методів up, down і showStep таким Таким чином, щоб їх виклик можна було зробити по ланцюжку, наприклад:
+// const handleInputFocus = () => {
+//   if(ghost.classList.contains('visible')) {
+//     ghost.classList.remove('visible');
+//   } else {
+//     ghost.classList.add('visible');
+//   }
+// }
 
-ladder.up().up().down().showStep(); // 1
-Такий підхід широко використовується в бібліотеках JavaScript.
-*/
+// input.addEventListener ('focus', handleInputFocus);
+// input.addEventListener ('focusout', handleInputFocus);
 
-// !! Рішення
+// !!  варіант 2 (заміна стилів)
 
-let ladder = {
-   step: 0,
-   up: function () {
-       this.step++;
-       return this;
-   },
-   down: function () {
-       this.step--;
-       return this;
-   },
-   showStep: function () {
-       alert(this.step);
-       return this;
-   }
+const input = document.querySelector(".input");
+const ghost = document.querySelector(".ghost");
 
-};
-
-ladder.up().up().down().showStep();
-
+input.addEventListener ('focus', () => {
+  ghost.style.visibility = 'visible'
+});
+input.addEventListener ('focusout', () => {
+  ghost.style.visibility = 'hidden'
+});
