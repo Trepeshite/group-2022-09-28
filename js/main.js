@@ -1,67 +1,108 @@
-Заняття 9
+// !!!  Заняття 9
 
-// !! ДЗ 19. Багатоквартирний будинок
+// !!! ДЗ 19. Багатоквартирний будинок 
+// Створити та описати сутності Багатоквартирного будинку, квартири, мешканця.
+// Додати можливість створювати нові будинки на певну кількість квартир.
+// Не обмежувати кількість мешканців у квартирі
 
-// ??  Створити та описати сутності Багатоквартирного будинку, квартири, мешканця.
-// ??  Додати можливість створювати нові будинки на певну кількість квартир.
-// ??  Не обмежувати кількість мешканців у квартирі 
+// !!! Рішення
 
-// !!  Рішення 
+// Що потрібно зробити
+
+// 1. Створити клас Людина
+//     властивості 
+//         імʼя
+//         стать
+//     методи
+//         конструктор, який приймає два параметри: імʼя та стать
+
+class ApartmentResident {
+  name;
+  gender;
+
+  constructor (name,gender){
+    this.name = name;
+    this.gender = gender;
+  }
+}
+// 2. клас Квартира
+//     властивості 
+//         конструктор не потрібен
+//         масив жителів, який при створенні пустий
+//     методи 
+//         додати жителя - метод повинен приймати екземпляр класу Людина, та додавати до масиву жителів
+class Apartment {
+  residents = [];
+
+  addResident(name, gender){
+    this.residents.push(new ApartmentResident(name, gender))
+  }
+}
+// 3. клас Будинок 
+//     властивості 
+//         масив квартир, який при створенні пустий
+//         максимальна кількість квартир
+//     методи
+//         конструктор, який приймає один параметр: максимальну кількість квартир
+//         додати квартиру - метод повинен приймати екземпляр класу Квартира, перевіряти, чи не буде кількість перевищувати максимальну 
+//         кількість квартир, і якщо це так, додати квартиру, в іншому випадку виводить у консоль відповідне повідомлення
+
 
 class АpartmentBuilding {
-   constructor(apartmentAddress, apartments = [], maxApartments) {
-      this.apartmentAddress=apartmentAddress;
-      this.apartmets = apartments;
-      this.apartmentQuantity= apartments.length;
-      this.maxApartments= maxApartments;
-   }
-   addApartment(apartmentNumber, apartmetRoomNumbers , residents = []) {
-      if(this.apartmentQuantity < this.maxApartments) {
-         this.apartments.push(new Apartment(apartmentNumber, apartmetRoomNumbers, residents))
-      }
-   }
- }
+  apartments = [];
+  maxApartments;
 
- class Apartment {
-   constructor(apartmentNumber, apartmetRoomNumbers ,residents = []) {
-      this.apartmentNumber = apartmentNumber;
-      this.apartmetRoomNumbers = apartmetRoomNumbers;
-      this.residents = residents;
-      this.residentsNumber = residents.length;
-   }
-   addResident(name, age, gender) {
-      this.residents.push(new ApartmentResident(name, age, gender));
-   }
+  constructor(maxApartments){
+   this.maxApartments = maxApartments;
+  }
 
- }
+  addApartment(apartment) {
+    if(this.apartments.length < this.maxApartments) {
+      this.apartments.push(apartment);
+    } else {
+      console.log (`Кількість наявних квартир перевищує максимальну кількість - ${this.maxApartments}.`);
+    }
+  }
+}
 
- class ApartmentResident {
-   constructor(name, age, gender) {
-      this.name = name;
-      this.age = age;
-      this.gender = gender;
-   }
- }
+// в якості демонстраціїї створити:
 
- const resident1 = new ApartmentResident ('Dima', 34, 'male');
- const resident2 = new ApartmentResident ('Anna', 23, 'female');
- const resident3 = new ApartmentResident ('Vika', 43, 'female');
- const resident4 = new ApartmentResident ('Max', 21, 'male');
- const resident5 = new ApartmentResident ('Jane', 23, 'female');
- const resident6 = new ApartmentResident ('Lo', 44, 'female');
- const resident7 = new ApartmentResident ('Lilo', 27, 'female');
+//     декілька екземплярів класу Людина
 
- const apartment1 = new Apartment (1,2,[resident1,resident3]);
- const apartment2 = new Apartment (2,1,[resident2]);
- apartment2.addResident('Jim', 27, 'male');
- const apartment3 = new Apartment (3,1,[resident4]);
- const apartment4 = new Apartment (1,3,[resident5]);
- const apartment5 = new Apartment (2,2,[resident6]);
- const apartment6 = new Apartment (3,1,[resident7]);
+const resident1 = new ApartmentResident ('Dima', 'male');
+const resident2 = new ApartmentResident ('Anna', 'female');
+const resident3 = new ApartmentResident ('Vika', 'female');
+const resident4 = new ApartmentResident ('Max', 'male');
+const resident5 = new ApartmentResident ('Jane', 'female');
+const resident6 = new ApartmentResident ('Lo', 'female');
+const resident7 = new ApartmentResident ('Lilo', 'female');
 
 
- const apartmentBuilding1 = new АpartmentBuilding ('Brooklyn',[apartment1, apartment2, apartment3, new Apartment (4,3,[new ApartmentResident ('john', 44, 'male')])],6);
- const apartmentBuilding2 = new АpartmentBuilding ('New Jersey',[apartment4, apartment5, apartment6],3);
+//     декілька екземплярів класу Квартира
 
-console.log (apartmentBuilding1);
-console.log (apartmentBuilding2);
+ const apartment1 = new Apartment ();
+ const apartment2 = new Apartment ();
+ const apartment3 = new Apartment ();
+
+//     додадити екземпляри класу Людина до екземплярів класу Квартира
+
+apartment1.addResident (resident1.name, resident1.gender);
+apartment1.addResident (resident2.name, resident2.gender);
+apartment2.addResident (resident3.name, resident3.gender);
+apartment2.addResident (resident4.name, resident4.gender);
+apartment3.addResident (resident5.name, resident5.gender);
+apartment3.addResident (resident6.name, resident6.gender);
+apartment3.addResident (resident7.name, resident7.gender);
+
+//     екземпляр класу Будинок
+
+const apartmentBuilding = new АpartmentBuilding (3);
+
+//     додадити екземпляри класу Квартира до екземплярів класу Будинок
+
+apartmentBuilding.addApartment (apartment1);
+apartmentBuilding.addApartment (apartment2);
+apartmentBuilding.addApartment (apartment3);
+apartmentBuilding.addApartment (new Apartment ());
+
+console.warn (apartmentBuilding);
