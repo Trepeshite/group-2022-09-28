@@ -1,50 +1,22 @@
-// !!  ДЗ 18. this chain
-/* 
-Це ladder (сходи) – об'єкт, який дозволяє підніматися вгору та спускатися:
+// !!  ДЗ 22. Таблиця
 
-let ladder = {
-    step: 0,
-    up: function () {
-        this.step++;
-    },
-    down: function () {
-        this.step--;
-    },
-    showStep: function () { // показывает текущую ступеньку
-        alert(this.step);
-    }
-};
-Тепер, якщо нам потрібно зробити кілька послідовних викликів, ми можемо виконати це так:
+// ?? Вивести на сторінку таблицю 10 × 10, заповнену числами від 1 до 100 (таблиця створюється за допомогою JavaScript).
 
-ladder.up();
-ladder.up();
-ladder.down();
-ladder.showStep(); // 1
+// !! рішення
 
-Змініть код методів up, down і showStep таким Таким чином, щоб їх виклик можна було зробити по ланцюжку, наприклад:
+const container = document.querySelector (".container");
+const table = document.createElement('table');
+let counter = 1;
+for(let i = 1; i <= 10; i++) {
+  const tr = document.createElement('tr');
+  for(let j = 1; j <= 10; j++) {
+    const td = document.createElement('td');
+    td.innerHTML = `${counter}`;
+    counter++;
+    tr.appendChild(td);
+  }
+  table.appendChild(tr);
+}
+container.appendChild(table);
 
-ladder.up().up().down().showStep(); // 1
-Такий підхід широко використовується в бібліотеках JavaScript.
-*/
-
-// !! Рішення
-
-let ladder = {
-   step: 0,
-   up: function () {
-       this.step++;
-       return this;
-   },
-   down: function () {
-       this.step--;
-       return this;
-   },
-   showStep: function () {
-       alert(this.step);
-       return this;
-   }
-
-};
-
-ladder.up().up().down().showStep();
-
+console.log(table);
