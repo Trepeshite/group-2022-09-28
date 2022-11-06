@@ -1,50 +1,10 @@
-// !!  ДЗ 18. this chain
-/* 
-Це ladder (сходи) – об'єкт, який дозволяє підніматися вгору та спускатися:
+// !!  ДЗ 23. Виведення зображень
+// ??  У папці `img` є зображення.
+// ??  При кожному завантаженні сторінки повинно виводитися випадково обране зображення.
 
-let ladder = {
-    step: 0,
-    up: function () {
-        this.step++;
-    },
-    down: function () {
-        this.step--;
-    },
-    showStep: function () { // показывает текущую ступеньку
-        alert(this.step);
-    }
-};
-Тепер, якщо нам потрібно зробити кілька послідовних викликів, ми можемо виконати це так:
+// !!  Рішення
 
-ladder.up();
-ladder.up();
-ladder.down();
-ladder.showStep(); // 1
-
-Змініть код методів up, down і showStep таким Таким чином, щоб їх виклик можна було зробити по ланцюжку, наприклад:
-
-ladder.up().up().down().showStep(); // 1
-Такий підхід широко використовується в бібліотеках JavaScript.
-*/
-
-// !! Рішення
-
-let ladder = {
-   step: 0,
-   up: function () {
-       this.step++;
-       return this;
-   },
-   down: function () {
-       this.step--;
-       return this;
-   },
-   showStep: function () {
-       alert(this.step);
-       return this;
-   }
-
-};
-
-ladder.up().up().down().showStep();
-
+const pictures = ["img/dog1.jpeg", "img/dog2.jpeg", "img/dog3.jpeg", "img/dog4.jpeg", "img/dog5.jpeg", "img/dog6.jpeg"];
+const randomNumber = Math.floor(Math.random() * pictures.length);
+document.querySelector("div.wrapper>img").src = pictures[randomNumber];
+document.querySelector("div.wrapper>img").alt = `dog${pictures[randomNumber].slice(7,8)}`;
