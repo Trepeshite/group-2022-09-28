@@ -30,7 +30,7 @@ class Person {
     this.name = name;
     this.age = age;
   }
-  getInfo() {
+  logInfo() {
     console.log(`\nВласник:\n\nІм'я = ${this.name}\nВік = ${this.age}`);
 }}
 
@@ -64,10 +64,10 @@ class Car {
     this.owner = owner;
   }
 
-  getCarInfo (){
+  logCarInfo (){
     console.log(`\nCar info:\n\nБренд: ${this.brand}\nМодель: ${this.model}\nРік: ${this.carYear}\nНомер автомобіля: ${this.carNumber}`);
     if(this.owner) {
-      this.owner.getInfo();
+      this.owner.logInfo();
     }
   }
 
@@ -89,6 +89,6 @@ const car3 = new Car ('TAVRIA', 'PICUP', 2010, 'AC4534VC');
 car1.setOwner(person1);
 car2.setOwner(person2);
 
-car1.getCarInfo();
-car2.getCarInfo();
-car3.getCarInfo();
+car1.logCarInfo();
+car2.logCarInfo();
+car3.logCarInfo();
