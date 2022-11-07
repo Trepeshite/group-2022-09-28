@@ -1,50 +1,46 @@
-// !!  ДЗ 18. this chain
-/* 
-Це ladder (сходи) – об'єкт, який дозволяє підніматися вгору та спускатися:
+// !!  ДЗ 24. Слайдер базовий
 
-let ladder = {
-    step: 0,
-    up: function () {
-        this.step++;
-    },
-    down: function () {
-        this.step--;
-    },
-    showStep: function () { // показывает текущую ступеньку
-        alert(this.step);
-    }
-};
-Тепер, якщо нам потрібно зробити кілька послідовних викликів, ми можемо виконати це так:
+// Пишемо свій слайдер зображень.
+// На сторінці є зображення та кнопки Next, Prev з боків від зображення.
+// При кліку на Next - показуємо наступне зображення.
+// При кліку на Prev - попереднє.
+// При досягненні останнього зображення - ховати кнопку Next. Аналогічно з першим зображенням і кнопкою Prev.
 
-ladder.up();
-ladder.up();
-ladder.down();
-ladder.showStep(); // 1
+// !!  Рішення
 
-Змініть код методів up, down і showStep таким Таким чином, щоб їх виклик можна було зробити по ланцюжку, наприклад:
+// пробував мінімум змінювати код html (поставив класи на buttons і поставив max-width на зображення, бо №6 - велике) і все робитии в js. бо можна ще зробити пару div і пити іншим шляхом
 
-ladder.up().up().down().showStep(); // 1
-Такий підхід широко використовується в бібліотеках JavaScript.
-*/
+document.querySelector(".previousButton").style.visibility = 'hidden'
 
-// !! Рішення
+const pictures = ["img/dog1.jpeg", "img/dog2.jpeg", "img/dog3.jpeg", "img/dog4.jpeg", "img/dog5.jpeg", "img/dog6.jpeg"];
 
-let ladder = {
-   step: 0,
-   up: function () {
-       this.step++;
-       return this;
-   },
-   down: function () {
-       this.step--;
-       return this;
-   },
-   showStep: function () {
-       alert(this.step);
-       return this;
-   }
+console.log(pictures.length);
 
-};
+document.querySelector(".previousButton").addEventListener ('click', slidePrevious);
+document.querySelector(".nextButton").addEventListener ('click', slideNext);
 
-ladder.up().up().down().showStep();
+let currentSlide = 0;
 
+function slidePrevious () {
+  if (currentSlide === 1) {
+    document.querySelector(".previousButton").style.visibility = 'hidden'
+  }
+  if (currentSlide === pictures.length-1) {
+    document.querySelector(".nextButton").style.visibility = 'visible'
+  }
+  currentSlide--;
+  document.querySelector("div.container > img").src = pictures[currentSlide];
+  document.querySelector("div.container > img").alt = `dog${currentSlide+1}`;
+}
+
+function slideNext () {
+  if (currentSlide === pictures.length-2) {
+    document.querySelector(".nextButton").style.visibility = 'hidden'
+  }
+  if (currentSlide === 0) {
+    document.querySelector(".previousButton").style.visibility = 'visible'
+  }
+  currentSlide++;
+  document.querySelector("div.container > img").src = pictures[currentSlide];
+  document.querySelector("div.container > img").alt = `dog${currentSlide+1}`;
+}
