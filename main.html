@@ -7,45 +7,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
-        .wrapper {
-            display: grid;
-            place-items: center;
-            height: 100vh;
-        }
-
-        .container {
-            display: grid;
-            grid-template-columns: 1fr 5fr 1fr;
-            place-items: center;
-            gap: 0.5rem;
-        }
-
-        button {
-            height: 2rem;
-        }
-
-        .previousButton {
-            visibility: visible;
-        }
-
-        .nextButton {
-            visibility: visible;
-        }
-
-        img {
-            max-width: 500px;
-        }
-
     </style>
 </head>
 
 <body>
     <div class="wrapper">
-        <div class="container">
-            <button class="previousButton">Prev</button>
-            <img src="./img/dog1.jpeg" alt="dog1">
-            <button class="nextButton">Next</button>
-        </div>
+        <input type="text" value="" id="input">
+        <button id="button">Перейти</button>
     </div>
 
     <script src="./js/main.js"></script>
