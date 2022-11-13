@@ -15,36 +15,48 @@
 
         .container {
             display: grid;
-            grid-template-columns: 1fr 5fr 1fr;
+            grid-template-columns: 1fr 1fr 1fr;
             place-items: center;
-            gap: 0.5rem;
+            gap: 1rem;
+        }
+
+        ul {
+            list-style-type: none;
+        }
+
+        li {
+            padding: 0.5rem;
+            cursor: pointer;
+        }
+
+        li:active {
+            color: blue;
         }
 
         button {
-            height: 2rem;
+            padding: 0.5rem 2rem;
+            margin: 1rem 0;
+            cursor: pointer;
         }
-
-        .previousButton {
-            visibility: visible;
-        }
-
-        .nextButton {
-            visibility: visible;
-        }
-
-        img {
-            max-width: 500px;
-        }
-
+        #buy-button {
+            visibility: hidden;
+        } 
     </style>
 </head>
 
 <body>
     <div class="wrapper">
         <div class="container">
-            <button class="previousButton">Prev</button>
-            <img src="./img/dog1.jpeg" alt="dog1">
-            <button class="nextButton">Next</button>
+            <ul id="categories">
+            </ul>
+            <ul id="products">
+            </ul>
+            <div>
+                <div id="description">
+                </div>
+                <button id="buy-button">Buy</button>
+                <div id="message"></div>
+            </div>
         </div>
     </div>
 
