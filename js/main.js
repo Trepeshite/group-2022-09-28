@@ -1,46 +1,26 @@
-// !!  ДЗ 24. Слайдер базовий
+// !!! ДЗ 28. generateList
 
-// Пишемо свій слайдер зображень.
-// На сторінці є зображення та кнопки Next, Prev з боків від зображення.
-// При кліку на Next - показуємо наступне зображення.
-// При кліку на Prev - попереднє.
-// При досягненні останнього зображення - ховати кнопку Next. Аналогічно з першим зображенням і кнопкою Prev.
+// Написати функцію generateList(array), яка приймає масив із чисел та масивів чисел і генерує список з елементів
+//Якщо за числом йде підмасив, додавати це число, потім крапку, а потім поточний елемент підмасиву. 
+// Ви можете розраховувати на коректність вхідних данинх - перед підмасивом обовʼязково має бути число.
 
-// !!  Рішення
+// !!! Рішення
 
-// пробував мінімум змінювати код html (поставив класи на buttons і поставив max-width на зображення, бо №6 - велике) і все робитии в js. бо можна ще зробити пару div і пити іншим шляхом
+const listOfLists = [1, 2, [1, 2, 3], 3, 4, [1, 2, [1, 2, 3]], 5];
 
-document.querySelector(".previousButton").style.visibility = 'hidden'
-
-const pictures = ["img/dog1.jpeg", "img/dog2.jpeg", "img/dog3.jpeg", "img/dog4.jpeg", "img/dog5.jpeg", "img/dog6.jpeg"];
-
-console.log(pictures.length);
-
-document.querySelector(".previousButton").addEventListener ('click', slidePrevious);
-document.querySelector(".nextButton").addEventListener ('click', slideNext);
-
-let currentSlide = 0;
-
-function slidePrevious () {
-  if (currentSlide === 1) {
-    document.querySelector(".previousButton").style.visibility = 'hidden'
-  }
-  if (currentSlide === pictures.length-1) {
-    document.querySelector(".nextButton").style.visibility = 'visible'
-  }
-  currentSlide--;
-  document.querySelector("div.container > img").src = pictures[currentSlide];
-  document.querySelector("div.container > img").alt = `dog${currentSlide+1}`;
+function generateList (array, prefix = '') {
+  let html = '';
+  array.forEach((el,index,arr) => {
+    if(Array.isArray(el)) {
+       prefix = prefix.concat(`${arr[index - 1]}.`);
+       html = html.concat(generateList(el, prefix));
+       prefix = '';
+    } else {
+       html = html.concat(`<li>${prefix}${el}</li>`);
+    }
+  });
+  
+  return `<ul>${html}</ul>`;
 }
 
-function slideNext () {
-  if (currentSlide === pictures.length-2) {
-    document.querySelector(".nextButton").style.visibility = 'hidden'
-  }
-  if (currentSlide === 0) {
-    document.querySelector(".previousButton").style.visibility = 'visible'
-  }
-  currentSlide++;
-  document.querySelector("div.container > img").src = pictures[currentSlide];
-  document.querySelector("div.container > img").alt = `dog${currentSlide+1}`;
-}
+document.body.innerHTML = generateList(listOfLists);
