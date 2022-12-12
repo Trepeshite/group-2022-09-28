@@ -1,46 +1,57 @@
-// !!  ДЗ 24. Слайдер базовий
+// !! ДЗ 30. Форма для реєстрації
 
-// Пишемо свій слайдер зображень.
-// На сторінці є зображення та кнопки Next, Prev з боків від зображення.
-// При кліку на Next - показуємо наступне зображення.
-// При кліку на Prev - попереднє.
-// При досягненні останнього зображення - ховати кнопку Next. Аналогічно з першим зображенням і кнопкою Prev.
+// ?? Умова:
+// Реалізовуємо форму для реєстрації.
+// Поля:
+// - Ім'я, Прізвище (Текстові поля)
+// - Дата народження (Текстове поле)
+// - Стать (radio)
+// - Місто (select)
+// - Адреса (textarea)
+// - Мови, якими володіє (checkbox)
+// - Кнопка “Зберегти”
 
-// !!  Рішення
+// За натисканням на кнопку замість форми повинна виводитися “таблиця” з даними, які ввів користувач.
 
-// пробував мінімум змінювати код html (поставив класи на buttons і поставив max-width на зображення, бо №6 - велике) і все робитии в js. бо можна ще зробити пару div і пити іншим шляхом
+// !! Рішення
+const userInformationForms = document.forms.userInformationForms;
+const userInformationTable = document.querySelector("#userInformationTable");
+const saveButton = document.querySelector("#saveButton");
 
-document.querySelector(".previousButton").style.visibility = 'hidden'
+saveButton.addEventListener("click", saveInformation);
 
-const pictures = ["img/dog1.jpeg", "img/dog2.jpeg", "img/dog3.jpeg", "img/dog4.jpeg", "img/dog5.jpeg", "img/dog6.jpeg"];
+function saveInformation(e) {
+  e.preventDefault();
+  userInformationForms.style.display = "none";
+  const formData = new FormData(userInformationForms);
+  const headersRow = document.createElement("tr");
+  const valuesRow = document.createElement("tr");
+  userInformationTable.appendChild(headersRow);
+  userInformationTable.appendChild(valuesRow);
+  const languages = [];
+  for (const data of formData) {
+    if (data[0] === "Language") {
+      languages.push(data[1]);
 
-console.log(pictures.length);
-
-document.querySelector(".previousButton").addEventListener ('click', slidePrevious);
-document.querySelector(".nextButton").addEventListener ('click', slideNext);
-
-let currentSlide = 0;
-
-function slidePrevious () {
-  if (currentSlide === 1) {
-    document.querySelector(".previousButton").style.visibility = 'hidden'
+      const languagesTd = document.getElementById("lang");
+      if (languagesTd) {
+        languagesTd.innerHTML = languages.join(",");
+      } else {
+        const th = document.createElement("th");
+        headersRow.appendChild(th);
+        th.innerHTML = data[0];
+        const td = document.createElement("td");
+        td.setAttribute("id", "lang");
+        valuesRow.appendChild(td);
+        td.innerHTML = data[1];
+      }
+    } else {
+      const th = document.createElement("th");
+      headersRow.appendChild(th);
+      th.innerHTML = data[0];
+      const td = document.createElement("td");
+      valuesRow.appendChild(td);
+      td.innerHTML = data[1];
+    }
   }
-  if (currentSlide === pictures.length-1) {
-    document.querySelector(".nextButton").style.visibility = 'visible'
-  }
-  currentSlide--;
-  document.querySelector("div.container > img").src = pictures[currentSlide];
-  document.querySelector("div.container > img").alt = `dog${currentSlide+1}`;
-}
-
-function slideNext () {
-  if (currentSlide === pictures.length-2) {
-    document.querySelector(".nextButton").style.visibility = 'hidden'
-  }
-  if (currentSlide === 0) {
-    document.querySelector(".previousButton").style.visibility = 'visible'
-  }
-  currentSlide++;
-  document.querySelector("div.container > img").src = pictures[currentSlide];
-  document.querySelector("div.container > img").alt = `dog${currentSlide+1}`;
 }

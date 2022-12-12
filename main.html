@@ -1,53 +1,76 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
         .wrapper {
-            display: grid;
-            place-items: center;
-            height: 100vh;
+            margin-left: 50px;
+            margin-top: 50px;
         }
-
-        .container {
-            display: grid;
-            grid-template-columns: 1fr 5fr 1fr;
-            place-items: center;
-            gap: 0.5rem;
+        table, th, tr, td {
+            border: solid 1px black;
+            border-collapse: collapse;
         }
-
-        button {
-            height: 2rem;
-        }
-
-        .previousButton {
-            visibility: visible;
-        }
-
-        .nextButton {
-            visibility: visible;
-        }
-
-        img {
-            max-width: 500px;
-        }
-
     </style>
 </head>
-
 <body>
     <div class="wrapper">
-        <div class="container">
-            <button class="previousButton">Prev</button>
-            <img src="./img/dog1.jpeg" alt="dog1">
-            <button class="nextButton">Next</button>
-        </div>
-    </div>
-
+        <form name="userInformationForms">
+          <div>
+            <label for="Name">Ім'я:</label><input name="Name" type="text">
+          </div>
+          <div>
+            <label for="Date">Дата народження:</label><input name="Date" type="Date">
+          </div>
+          <div>
+            <p>Стать:</p>
+            <label for="Gender">Жінка</label><input name="Gender" type="radio" value="Жінка" checked>
+            <label for="Gender">Чоловік</label><input name="Gender" type="radio" value="Чоловік">
+          </div>
+          <div>
+            <label>Місто:</label>
+            <select id="city" name="City">
+              <option value="Kiev">Kiev</option>
+              <option value="London">London</option>
+              <option value="NY">NY</option>
+              <option value="Wroclaw">Wroclaw</option>
+            </select>
+          </div>
+          <div>
+            <label for="address">Адрес:</label><input type="textarea" name="Address">
+          </div>
+          <div>
+            <label>Мови, якими володієте:</label>
+            <div>
+              <input type="checkbox" id="Urk" name="Language" value="Urk" />
+              <label for="Urk">Українська</label>
+            </div>
+            <div>
+              <input type="checkbox" id="Pol" name="Language" value="Pol" />
+              <label for="Pol">Польська</label>
+            </div>
+            <div>
+              <input type="checkbox" id="Eng" name="Language" value="Eng" />
+              <label for="Eng">Англіська</label>
+            </div>
+          </div>
+          <input type="submit" value="Зберегти" id="saveButton">
+        </form>
+        
+        <br>
+        <br>
+        <br>
+        <table id="userInformationTable">
+          
+        </table>
+      </div>
     <script src="./js/main.js"></script>
 </body>
 
