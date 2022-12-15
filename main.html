@@ -7,44 +7,104 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
-        .wrapper {
-            display: grid;
-            place-items: center;
-            height: 100vh;
-        }
+    .wrapper {
+    display: grid;
+    place-items: center;
+    height: 100vh;
+    }
 
-        .container {
-            display: grid;
-            grid-template-columns: 1fr 5fr 1fr;
-            place-items: center;
-            gap: 0.5rem;
-        }
+    .container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    place-items: center;
+    gap: 1rem;
+    }
 
-        button {
-            height: 2rem;
-        }
+    ul {
+    list-style-type: none;
+    }
 
-        .previousButton {
-            visibility: visible;
-        }
+    li {
+    padding: 0.5rem;
+    cursor: pointer;
+    }
 
-        .nextButton {
-            visibility: visible;
-        }
+    li:active {
+    color: blue;
+    }
 
-        img {
-            max-width: 500px;
-        }
+    button {
+    padding: 0.5rem 2rem;
+    margin: 1rem 0;
+    cursor: pointer;
+    }
+    #buy-button {
+    visibility: hidden;
+    }
+    #order-processing > div {
+    margin-bottom: 5px;
+    }
+    p.error {
+    color: red;
+    margin: 0;
+    display: none;
+    }
 
+    #order-processing {
+    display: none;
+    }
     </style>
 </head>
 
 <body>
     <div class="wrapper">
         <div class="container">
-            <button class="previousButton">Prev</button>
-            <img src="./img/dog1.jpeg" alt="dog1">
-            <button class="nextButton">Next</button>
+            <ul id="categories">
+            </ul>
+            <ul id="products">
+            </ul>
+            <div>
+                <div id="description">
+                </div>
+                <button id="buy-button">Buy</button>
+                <div id="message">
+                     <form name="orderProcessing" id="order-processing">
+                        <div>
+                            <label>ПІБ покупця</label>
+                            <input type="text" name="name" id="name"> <p class="error">Ви не ввели ім'я</p>
+                        </div>
+                        <div>
+                            <label>Місто</label>
+                            <select id="city" name="city">
+                                <option value="Kiev">Kiev</option>
+                                <option value="London">London</option>  
+                                <option value="NY">NY</option>  
+                                <option value="Wroclaw">Wroclaw</option>  
+                            </select>
+                        </div>
+                        <div>
+                            <label>Склад Нової пошти для надсилання</label>
+                            <input type="number" name="delivery" id="delivery" min="1">
+                          <p class="error">Ви не ввели номер відділення</p>
+                        </div>
+                        <div>
+                            <label for="paymentMethod">Спосіб оплати:</label>
+                            <select id="paymentMethod" name="paymentMethod">
+                                <option value="postpaid">післяплата</option>
+                                <option value="payment by bank card">оплата на банківську картку</option>  
+                            </select>
+                        </div>
+                        <div>
+                            <label>Кількість продукції, що купується</label>
+                            <input type="number" name="quantityOfProducts" id="quantityOfProducts" value="1" min="1">
+                        </div>
+                        <div>
+                            <input type="button" value="Зберегти" name="saveButton" id="save-button">
+                        </div>
+                    </form> 
+                    <p id="result-message"></p>
+                </div>
+            </div>
         </div>
     </div>
 
