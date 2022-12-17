@@ -1,46 +1,58 @@
-// !!  ДЗ 24. Слайдер базовий
+// ДЗ 34. Ajax Weather
 
-// Пишемо свій слайдер зображень.
-// На сторінці є зображення та кнопки Next, Prev з боків від зображення.
-// При кліку на Next - показуємо наступне зображення.
-// При кліку на Prev - попереднє.
-// При досягненні останнього зображення - ховати кнопку Next. Аналогічно з першим зображенням і кнопкою Prev.
+// ?? Задача
 
-// !!  Рішення
+// За допомогою ajax-запиту вивести погоду
+// Request URL:
+// http://api.openweathermap.org/data/2.5/weather?q=LVIV&ç=metric&APPID=5d066958a60d315387d9492393935c19
 
-// пробував мінімум змінювати код html (поставив класи на buttons і поставив max-width на зображення, бо №6 - велике) і все робитии в js. бо можна ще зробити пару div і пити іншим шляхом
+// q=XXX - місто, для якого показати погоду
+// units=metric - ми хочемо отримати градуси Цельсія, метри на секунду, а не Фаренгейта та фути
+// APPID=5d066958a60d315387d9492393935c19 - треба використовувати цей ключ, щоб отримати відповідь
 
-document.querySelector(".previousButton").style.visibility = 'hidden'
+// Потрібно вивести наступні дані:
 
-const pictures = ["img/dog1.jpeg", "img/dog2.jpeg", "img/dog3.jpeg", "img/dog4.jpeg", "img/dog5.jpeg", "img/dog6.jpeg"];
+// temp – температура
+// pressure - тиск
+// description – опис
+// humidity – вологість
+// speed – швидкість вітру
+// deg - напрям у градусах
+// icon - це назва файлу з іконкою, яка символізує поточну погоду
 
-console.log(pictures.length);
+// Шлях до файлу з іконкою формується наступним чином:
+// const imgUrl = `http://openweathermap.org/img/w/${icon}.png`
+// Документація по API:
+// https://openweathermap.org/current */
 
-document.querySelector(".previousButton").addEventListener ('click', slidePrevious);
-document.querySelector(".nextButton").addEventListener ('click', slideNext);
+// !! Рішення
 
-let currentSlide = 0;
+const form = document.querySelector(".form");
+const formInput = document.querySelector(".form-input");
+const content = document.querySelector(".content");
+const button = document.querySelector(".form-button");
+form.addEventListener("submit", search);
 
-function slidePrevious () {
-  if (currentSlide === 1) {
-    document.querySelector(".previousButton").style.visibility = 'hidden'
-  }
-  if (currentSlide === pictures.length-1) {
-    document.querySelector(".nextButton").style.visibility = 'visible'
-  }
-  currentSlide--;
-  document.querySelector("div.container > img").src = pictures[currentSlide];
-  document.querySelector("div.container > img").alt = `dog${currentSlide+1}`;
-}
+function search(e) {
+  e.preventDefault();
 
-function slideNext () {
-  if (currentSlide === pictures.length-2) {
-    document.querySelector(".nextButton").style.visibility = 'hidden'
-  }
-  if (currentSlide === 0) {
-    document.querySelector(".previousButton").style.visibility = 'visible'
-  }
-  currentSlide++;
-  document.querySelector("div.container > img").src = pictures[currentSlide];
-  document.querySelector("div.container > img").alt = `dog${currentSlide+1}`;
+  form.style.display = "none";
+
+  fetch(
+    `https://api.openweathermap.org/data/2.5/weather?q=${formInput.value}&units=metric&APPID=5d066958a60d315387d9492393935c19`
+  )
+    .then((res) => res.json())
+    .then((res) => {
+      content.innerHTML += ` 
+    <h2>Місто: ${res.name}<img
+     src="http://openweathermap.org/img/w/${res.weather.at(0).icon}.png"
+     alt="weather"></h2>
+    <h3>Температура: ${res.main.temp}°C
+    <h3>Тиск: ${res.main.pressure}hPa
+    <h3>Oпис: ${res.weather.at(0).description}
+    <h3>Вологість: ${res.main.humidity}%
+    <h3>Швидкість вітру: ${res.wind.speed}м/с
+    <h3>Напрям у градусах: ${res.wind.deg}°
+    `;
+    });
 }
