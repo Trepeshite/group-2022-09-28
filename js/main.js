@@ -1,46 +1,70 @@
-// !!  ДЗ 24. Слайдер базовий
+// !! ДЗ 32. Promise
 
-// Пишемо свій слайдер зображень.
-// На сторінці є зображення та кнопки Next, Prev з боків від зображення.
-// При кліку на Next - показуємо наступне зображення.
-// При кліку на Prev - попереднє.
-// При досягненні останнього зображення - ховати кнопку Next. Аналогічно з першим зображенням і кнопкою Prev.
+// ?? Завдання
+// Використовуючи API https://jsonplaceholder.typicode.com/ зробити пошук поста за ід.
+// Ід має бути введений в інпут (валідація: ід від 1 до 100) Якщо знайдено пост, то вивести на сторінку блок з постом і зробити кнопку для отримання комкоментарів до посту.
+// Зробити завдання використовуючи проміси, перехопити помилки.
 
-// !!  Рішення
+// !! Рішення
 
-// пробував мінімум змінювати код html (поставив класи на buttons і поставив max-width на зображення, бо №6 - велике) і все робитии в js. бо можна ще зробити пару div і пити іншим шляхом
+const form = document.querySelector(".form");
+const formInput = document.querySelector(".form-input");
+const formButton = document.querySelector(".form-button");
+const err = document.querySelector(".err");
+const content = document.querySelector(".content");
+const comments = document.querySelector(".comments");
+const commentsButton = document.querySelector(".comments-button")
 
-document.querySelector(".previousButton").style.visibility = 'hidden'
+formButton.addEventListener("click", search);
+commentsButton.addEventListener("click", showComments); 
 
-const pictures = ["img/dog1.jpeg", "img/dog2.jpeg", "img/dog3.jpeg", "img/dog4.jpeg", "img/dog5.jpeg", "img/dog6.jpeg"];
 
-console.log(pictures.length);
-
-document.querySelector(".previousButton").addEventListener ('click', slidePrevious);
-document.querySelector(".nextButton").addEventListener ('click', slideNext);
-
-let currentSlide = 0;
-
-function slidePrevious () {
-  if (currentSlide === 1) {
-    document.querySelector(".previousButton").style.visibility = 'hidden'
-  }
-  if (currentSlide === pictures.length-1) {
-    document.querySelector(".nextButton").style.visibility = 'visible'
-  }
-  currentSlide--;
-  document.querySelector("div.container > img").src = pictures[currentSlide];
-  document.querySelector("div.container > img").alt = `dog${currentSlide+1}`;
+function clearForm () {
+  err.style.display = "none";
+  comments.innerHTML = "";
 }
 
-function slideNext () {
-  if (currentSlide === pictures.length-2) {
-    document.querySelector(".nextButton").style.visibility = 'hidden'
+function search (e) {
+  e.preventDefault();
+  
+  
+  if (formInput.value<1 || formInput.value>100) {
+    err.style.display = "block"
+    setTimeout(clearForm,2000);
   }
-  if (currentSlide === 0) {
-    document.querySelector(".previousButton").style.visibility = 'visible'
+  else {
+    fetch(`https://jsonplaceholder.typicode.com/posts/${formInput.value}`)
+    .then(response => response.json())
+    .then(response => {
+      content.innerHTML = "";
+      content.innerHTML += `
+      <p class="text"><span class="titel">Назва поста: </span>${response.title}</p>
+      <p class="text"><span class="titel">Текст: </span>${response.body}</p>
+      `
+    })
+    .catch((err) => console.log(err))
+    clearForm();
+    
+    comments.style.display = "block"
+    commentsButton.style.display = "block"
+  }}
+  
+  function showComments (e) {
+    e.preventDefault();
+    
+    fetch(`https://jsonplaceholder.typicode.com/comments?postId=${formInput.value}`)
+    .then(response => response.json())
+    .then(response => {
+
+        response.forEach(element => {
+        comments.innerHTML += `
+        <p class="text"><span class="titel">Ім'я: </span>${element.name}</p>
+        <p class="text"><span class="titel">Пошта: </span>${element.email}</p>
+        <p class="text"><span class="titel">Комментар: </span>${element.body}</p>
+        ________________________________________________________________________
+        `
+        });
+    })
+
+    .catch((err) => console.log(err))
   }
-  currentSlide++;
-  document.querySelector("div.container > img").src = pictures[currentSlide];
-  document.querySelector("div.container > img").alt = `dog${currentSlide+1}`;
-}
