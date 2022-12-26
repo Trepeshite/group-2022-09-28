@@ -5,49 +5,45 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>ДЗ 32. Promise</title>
     <style>
-        .wrapper {
-            display: grid;
-            place-items: center;
-            height: 100vh;
+        .form-input {
+            width: 120px;
         }
-
-        .container {
-            display: grid;
-            grid-template-columns: 1fr 5fr 1fr;
-            place-items: center;
-            gap: 0.5rem;
+        .err {
+            color: red;
+            display: none;
         }
-
-        button {
-            height: 2rem;
+        .titel {
+            font-style: normal;
+            font: caption;
         }
-
-        .previousButton {
-            visibility: visible;
+        .text {
+            font-style: italic;
         }
-
-        .nextButton {
-            visibility: visible;
+        .comments {
+            display: none;
         }
-
-        img {
-            max-width: 500px;
+        .comments-button {
+            display: none;
         }
-
     </style>
 </head>
 
 <body>
     <div class="wrapper">
-        <div class="container">
-            <button class="previousButton">Prev</button>
-            <img src="./img/dog1.jpeg" alt="dog1">
-            <button class="nextButton">Next</button>
-        </div>
+        <form class="form">
+            <input placeholder="введіть id поста" class="form-input" type="number">
+            <button class="form-button" type="submit">Пошук</button>
+        </form>
     </div>
-
+    <p class="err">Ви ввели не вірне id поста. Введіть цифру від 1 до 100</p>
+    <div class="content">
+    </div>
+    <div>
+        <button class="comments-button">Коментарі</button>
+        <div class="comments"></div>
+    </div>
     <script src="./js/main.js"></script>
 </body>
 
