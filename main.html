@@ -7,48 +7,160 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
-        .wrapper {
-            display: grid;
-            place-items: center;
-            height: 100vh;
-        }
+    .container{
+        display: flex;
+    }
+    .container>div{
+        width: 33%;
+        padding: 10px;
+        margin-right: 5px;
+        margin-top: 10px;
+    }
 
-        .container {
-            display: grid;
-            grid-template-columns: 1fr 5fr 1fr;
-            place-items: center;
-            gap: 0.5rem;
-        }
+    ul {
+        list-style-type: none;
+    }
 
-        button {
-            height: 2rem;
-        }
+    li {
+        text-align: center;
+        border: 1px solid black;
+        padding: 0.5rem;
+        cursor: pointer;
+    }
 
-        .previousButton {
-            visibility: visible;
-        }
+    li:hover {
+        background-color: gray;
+    }
 
-        .nextButton {
-            visibility: visible;
-        }
+    li:active {
+        color: white;
+    }
 
-        img {
-            max-width: 500px;
-        }
+    button {
+        padding: 0.5rem 2rem;
+        margin: 1rem 0;
+        cursor: pointer;
+    }
+    #buy-button {
+        display: none;
+    }
+    #order-processing > div {
+        margin-bottom: 5px;
+    }
+    p.error {
+        color: red;
+        margin: 0;
+        display: none;
+    }
 
+    #order-processing {
+        display: none;
+    }
+
+    .delete-button {
+        padding: 2px 5px;
+        border: 1px solid rgb(0, 0, 0);
+        margin-left: 10px;
+    }
+    .delete-button:hover {
+        background-color: red;
+        color: white;
+    }
+
+    #back-btn {
+        display: none;
+        margin-left: 40px;
+    }
+    #thanks-message {
+        display: none;
+        color: green;
+    }
+    #my-orders-btn {
+        margin-left: 40px;
+    }
+    #about-product {
+        margin-top: 16px;
+        display: none;
+        border: 1px solid rgb(0, 0, 0);
+        padding: 5px;
+    }
+    #order-details {
+        display: none;
+        border: 1px solid rgb(0, 0, 0);
+        padding: 5px;
+    }
+    #description {
+        margin-top: 15px;
+
+    }
     </style>
 </head>
 
 <body>
-    <div class="wrapper">
-        <div class="container">
-            <button class="previousButton">Prev</button>
-            <img src="./img/dog1.jpeg" alt="dog1">
-            <button class="nextButton">Next</button>
+        <div class="wrapper">
+            <div class="container">
+                <div class="blocks block-a">
+                    <ul id="categories">
+                    </ul>
+                    <button id="my-orders-btn">Мої замовлення</button>
+                    <button id="back-btn">Назад</button>
+                    <ul id="my-orders-list"></ul>
+                </div>
+                <div class="blocks block-b">
+                    <ul id="products">
+                    </ul>
+                    <div id="order-details">
+                    </div>
+                </div>
+                <div class="blocks block-c">
+                    <div id="description">
+                    </div>
+                    <button id="buy-button">Купити</button>
+                    <div id="order-form">
+                        <form name="orderProcessing" id="order-processing">
+                            <div>
+                                <label>ПІБ покупця</label>
+                                <input type="text" name="name" id="name"> <p class="error">Ви не ввели ім'я</p>
+                            </div>
+                            <div>
+                                <label>Місто</label>
+                                <select id="city" name="city">
+                                    <option value="Kiev">Kiev</option>
+                                    <option value="London">London</option>  
+                                    <option value="NY">NY</option>  
+                                    <option value="Wroclaw">Wroclaw</option>  
+                                </select>
+                            </div>
+                            <div>
+                                <label>Склад "Нової Пошти" для надсилання</label>
+                                <input type="number" name="delivery" id="delivery" min="1">
+                            <p class="error">Ви не ввели номер відділення</p>
+                            </div>
+                            <div>
+                                <label for="paymentMethod">Спосіб оплати:</label>
+                                <select id="paymentMethod" name="paymentMethod">
+                                    <option value="Післяоплата">післяоплата</option>
+                                    <option value="Оплата на банківську картку">оплата на банківську картку</option>  
+                                </select>
+                            </div>
+                            <div>
+                                <label>Кількість продукції, що купується</label>
+                                <input type="number" name="quantityOfProducts" id="quantityOfProducts" value="1" min="1">
+                            </div>
+                            <div>
+                                <input type="button" value="Підтвердити" name="saveButton" id="save-button">
+                            </div>
+                        </form> 
+                        <p id="thanks-message">Дякую, що купили наш товар</p>
+                    </div>
+                    <div id="about-product">
+                    </div>
+                </div>
+            </div>
         </div>
-    </div>
 
     <script src="./js/main.js"></script>
+
 </body>
 
 </html>
