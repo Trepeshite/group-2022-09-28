@@ -1,24 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { Routes, Route } from "react-router-dom";
+import "./App.css";
+import IconCounterApp from "./modules/iconCounter/IconCounterApp";
+import ToDoListApp from "./modules/todoList/ToDoListApp";
+import Header from "./components/Header";
+import Aside from "./components/Aside";
+import ContactsApp from "./modules/contacts/ContactsApp";
+import UsersListApp from "./modules/usersList/UsersListApp";
 
 function App() {
   return (
     <div className="app">
-      <header className="header">
-        <p>
-          Dima Shevchuk - React app
-        </p>
-      </header>
+      <Header />
       <main>
-        <aside>
-          <ul>
-            <li><a href="https://reactjs.org/docs/getting-started.html" target="_blank" rel="noopener noreferrer">React Documentation</a></li>
-            <li><a href="https://reactjs.org/community/examples.html" target="_blank" rel="noopener noreferrer">React Examples</a></li>
-          </ul>
-        </aside>
-        <atricle>
-          <img src={logo} className="react-logo" alt="logo" />
-        </atricle>
+        <Aside />
+        <Routes>
+          <Route path="/" element={<IconCounterApp />} />
+          <Route path="/todolist" element={<ToDoListApp />} />
+          <Route path="/contacts" element={<ContactsApp />} />
+          <Route path="/userlist" element={<UsersListApp />} />
+        </Routes>
       </main>
     </div>
   );

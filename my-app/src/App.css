@@ -1,4 +1,4 @@
-*{
+* {
   margin: 0;
   padding: 0;
   list-style: none;
@@ -9,7 +9,6 @@
 }
 
 .react-logo {
-  height: 40vmin;
   pointer-events: none;
 }
 
@@ -23,32 +22,95 @@
   background-color: #282c34;
   min-height: 50px;
   display: flex;
-  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  justify-content: flex-start;
+  font-size: 18px;
   color: white;
   border-bottom: 1px white solid;
 }
 
-li {
-  padding: 10px 15px;
-}
 
-li:hover {
-  background-color: #555b66;
-}
-
-a {
-  color: #61dafb;
-  text-decoration: none;
-}
 
 aside {
   background-color: #282c34;
   height: 100vh;
   width: 200px;
-  float: left;
+}
+
+aside li {
+  cursor: pointer;
+  color: #61dafb;
+}
+
+aside li > a {
+  display: block;
+  padding: 10px 15px;
+  color: #61dafb;
+  text-decoration: none;
+}
+
+.todo-list-app li,
+.icon-counter-app li {
+  cursor: pointer;
+  color: black;
+  font-size: 16px;
+  padding: 10px 15px;
+}
+
+aside li:hover {
+  background-color: #555b66;
+}
+
+.todo-list-app li:hover {
+  background-color: #f5f6f8;
+}
+
+.icon-counter-app li:hover {
+  background-color: #555b66;
+}
+
+main {
+  display: flex;
+}
+
+main > div {
+  margin: 0 auto;
+}
+
+.left-menu__item {
+  text-align: left;
+}
+
+.icon-counters {
+  display: flex;
+  justify-content: center;
+}
+
+.todo-list-app input {
+  height: 26px;
+  width: 600px;
+  margin: 10px 10px 10px 0;
+  outline: none;
+}
+
+.contacts-app, .user-list-app {
+  margin-top: 20px;
+}
+
+.slick-arrow {
+  display: block !important;
+  z-index: 2;
+  font-size: 32px !important;
+  color: white !important;
+  width: auto !important;
+}
+
+.slick-arrow.slick-prev {
+  left: 10px !important;
+}
+
+.slick-arrow.slick-next {
+  right: 10px !important;
 }
 
 @keyframes React-logo-spin {
